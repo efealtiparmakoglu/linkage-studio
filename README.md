@@ -1,5 +1,7 @@
 # 🦿 Linkage Studio — Blender
 
+[![CI](https://github.com/efealtiparmakoglu/linkage-studio/actions/workflows/ci.yml/badge.svg)](https://github.com/efealtiparmakoglu/linkage-studio/actions/workflows/ci.yml)
+
 **EN:** A Blender add-on that builds walking machines from **Jansen's linkage** — the 11-bar mechanism behind Theo Jansen's Strandbeest. Pick a leg count in the N-panel, click *Build*, and get a machine whose every bar position comes from the **closed-form kinematic solution** of the linkage. No keyframe acting, no easing fakes: each frame is solved from trigonometry, then keyed LINEAR.
 
 **TR:** Theo Jansen'in Strandbeest'lerinin arkasındaki 11 çubuklu **Jansen mekanizmasıyla** yürüyen makineler kuran Blender add-on'u. N-panel'den bacak sayısını seç, *Kur*'a bas; her çubuğun konumu bağlantının **kapalı-form kinematik çözümünden** gelir. Keyframe Oyunculuğu yok, easing sahteciliği yok: her kare trigonometriden çözülür, LINEAR anahtarlanır.
@@ -21,6 +23,27 @@ Measured gait (standard proportions): / Ölçülen yürüyüş (standart oranlar
 | Stance share / Yerde kalma | %52 |
 | Step height / Adım yüksekliği | 22.5 birim (≈ 0.67 m @ 0.03 ölçek) |
 | Stride / Adım boyu | 64.9 birim (≈ 1.95 m) |
+
+## 📦 Download / İndir
+
+**[Download the installable ZIP](https://github.com/efealtiparmakoglu/linkage-studio/releases/latest/download/linkage_studio.zip)** · [Releases](https://github.com/efealtiparmakoglu/linkage-studio/releases)
+
+The add-on declares Blender **4.2+**. Its current end-to-end check was run locally on Blender **5.2.2**: registration, six-leg build, two-leg rebuild and LINEAR animation keys. This does not claim every Blender version has been tested.
+
+**TR:** Kurulum için yukarıdaki ZIP'i indir. Eklenti Blender 4.2+ bildirir; mevcut uçtan uca doğrulama 5.2.2'de yapıldı.
+
+Build the same package from source:
+
+```bash
+python3 tests/verify.py
+python3 tests/test_package.py
+```
+
+The second command creates `linkage_studio.zip` and checks its file list, CRC integrity and bundled solver against the source. CI runs both commands on Python 3.11/3.12 and keeps the ZIP as an Actions artifact. Blender scene construction remains a separate check:
+
+```bash
+blender --background --factory-startup --python tests/e2e_addon.py
+```
 
 ## 🖥️ Add-on / Eklenti
 
